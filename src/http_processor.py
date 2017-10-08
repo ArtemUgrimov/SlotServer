@@ -8,7 +8,7 @@ class HttpProcessor(BaseHTTPRequestHandler):
 
 	def do_GET(self):
 		self.send_response(200)
-		self.send_header('content-type','text/json')
+		self.send_header('content-type','text/json; charset=utf-8')
 		self.end_headers()
 
 		o = urlparse.urlparse(self.path)
