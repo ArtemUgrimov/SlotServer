@@ -1,4 +1,6 @@
+import json
 import os
+from pathlib import PureWindowsPath, Path
 
 from src.engine.rules.rule import GameRule
 
@@ -8,13 +10,20 @@ class RuleReader:
 
     def read(self):
 
-        rules_dir = '{}/../res/rules/'.format(os.getcwd())
+        rules_dir = str(Path(PureWindowsPath(r'{}\\res\\rules\\'.format(os.getcwd()))))
 
         for root, dirs, files in os.walk(rules_dir, topdown=False):
             for name in files:
-                with open(os.path.join(root, name), 'r') as rule:
+                full_path = os.path.join(root, name)
+                with open(full_path, 'r') as rule:
                     content = rule.read()
-                    print(content)
+                    try:
+                        converted_rule = json.loads(content)
+                        rule = GameRule(converted_rule)
+                        game_name = name.replace('.json', '')
+                        RuleReader.rules[game_name] = rule
+                    except BaseException as ex:
+                        print('Cannot deserialize rule from file {}. \n{}'.format(name, ex))
 
     @staticmethod
     def get(game_name: str) -> GameRule:

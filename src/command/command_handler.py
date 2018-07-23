@@ -1,11 +1,10 @@
 import abc
 
 from src.network.request import Request
-from src.network.server import Server
 
 
 class CommandHandler(metaclass=abc.ABCMeta):
-    def __init__(self, server: Server):
+    def __init__(self, server):
         self.server = server
 
     @abc.abstractmethod

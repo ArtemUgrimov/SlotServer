@@ -22,10 +22,9 @@ class Server(HTTPServer):
         self.read_rules()
 
     def handle(self, request):
-
         request_obj = Request(request)
         handler = self.command_handlers.get(request_obj.command, self.default_handler)
-        response = handler.handle(request_obj, self)
+        response = handler.handle(request_obj)
 
         return response
 
