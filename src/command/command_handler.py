@@ -9,5 +9,5 @@ class CommandHandler(metaclass=abc.ABCMeta):
         self.server = server
 
     @abc.abstractmethod
-    def handle(self, request: Request, server: Server):
+    def handle(self, request: Request):
         raise NotImplemented()

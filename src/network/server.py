@@ -3,6 +3,7 @@ from http.server import HTTPServer
 from src.command.connect_handler import ConnectHandler
 from src.command.default_handler import DefaultHandler
 from src.command.ping_handler import PingHandler
+from src.engine.rules.rule_reader import RuleReader
 from src.network.request import Request
 
 
@@ -18,6 +19,8 @@ class Server(HTTPServer):
 
         self.games = {}
 
+        self.read_rules()
+
     def handle(self, request):
 
         request_obj = Request(request)
@@ -28,3 +31,7 @@ class Server(HTTPServer):
 
     def error(self, msg):
         return {'status': 'error', 'message': msg}
+
+    def read_rules(self):
+        reader = RuleReader()
+        reader.read()
