@@ -1,4 +1,4 @@
-from src.engine.engine.state_machine import StateMachine
+from src.core.engine.state_machine import StateMachine
 
 
 class Engine(StateMachine):
@@ -7,7 +7,8 @@ class Engine(StateMachine):
         self.game = game
 
     def play(self):
-        pass
+        action = self.game.protocol.request.command
+        self.process(action)
 
     def finalize(self):
         pass

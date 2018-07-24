@@ -1,4 +1,4 @@
-from src.engine.rules.rule_reader import RuleReader
+from src.core.rules.rule_reader import RuleReader
 
 
 class Game:
@@ -10,7 +10,8 @@ class Game:
         self.engine = engine(self)
         self.protocol = protocol(self)
 
-    def play(self):
+    def play(self, request):
+        self.protocol.request = request
         self.engine.play()
         response = self.protocol.get_response()
 

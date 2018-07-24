@@ -3,7 +3,7 @@ from http.server import HTTPServer
 from src.command.connect_handler import ConnectHandler
 from src.command.default_handler import DefaultHandler
 from src.command.ping_handler import PingHandler
-from src.engine.rules.rule_reader import RuleReader
+from src.core.rules.rule_reader import RuleReader
 from src.network.request import Request
 
 

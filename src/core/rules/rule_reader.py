@@ -2,7 +2,7 @@ import json
 import os
 from pathlib import PureWindowsPath, Path
 
-from src.engine.rules.rule import GameRule
+from src.core.rules.rule import GameRule
 
 
 class RuleReader:

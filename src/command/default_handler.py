@@ -1,9 +1,11 @@
 from src.command.command_handler import CommandHandler
 from src.network.request import Request
-from src.network.response import Response
 
 
 class DefaultHandler(CommandHandler):
     def handle(self, request: Request):
-        print('Default handler')
-        return Response()
+
+        game = self.server.games['{}_{}'.format(request.user_id, request.game_id)]
+        response = game.play(request)
+
+        return response
