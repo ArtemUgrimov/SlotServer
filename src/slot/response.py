@@ -8,3 +8,4 @@ class SlotResponse(Response):
 
         self.raw_response['balance'] = context.balance
         self.raw_response['window'] = context.window
+        self.raw_response['wins'] = context.wins

@@ -28,4 +28,4 @@ class HttpProcessor(BaseHTTPRequestHandler):
             raise
 
     def write_response(self, response: dict):
-        self.wfile.write(json.dumps(response, indent=4, sort_keys=True).encode())
+        self.wfile.write(json.dumps(response).encode())

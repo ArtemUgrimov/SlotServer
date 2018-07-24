@@ -22,3 +22,13 @@ class SlotContext(Context):
     @shifts.setter
     def shifts(self, value):
         self.attributes['shifts'] = value
+
+    @property
+    def wins(self):
+        if 'wins' not in self.attributes:
+            self.attributes['wins'] = []
+        return self.attributes['wins']
+
+    @wins.setter
+    def wins(self, value):
+        self.attributes['wins'] = value
