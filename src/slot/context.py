@@ -32,3 +32,20 @@ class SlotContext(Context):
     @wins.setter
     def wins(self, value):
         self.attributes['wins'] = value
+
+    @property
+    def bet(self):
+        if 'bet' not in self.attributes:
+            self.attributes['bet'] = 0
+        return self.attributes['bet']
+
+    @bet.setter
+    def bet(self, value):
+        self.attributes['bet'] = value
+
+    @property
+    def total_win(self):
+        total = 0
+        for win in self.wins:
+            total += win['coeff'] * self.bet
+        return total
