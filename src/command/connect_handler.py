@@ -10,7 +10,7 @@ class ConnectHandler(CommandHandler):
         user_id = request['user_id']
         game_id = request['game_id']
 
-        game = getattr(GameFactory.instance, 'get_game', game_id)
+        game = GameFactory.instance().get_game(game_id)
 
         self.server.games['{}_{}'.format(user_id, game_id)] = game
 
