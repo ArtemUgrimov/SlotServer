@@ -38,13 +38,14 @@ class SlotIdleCalculator(Calculator):
         for payline in game.rule.paylines:
 
             first_index = (len(window) - 1) if payline.direction != 'lr' else 0
-            increment = -1 if payline.direction != 'lr' else 1
+            path = reversed(range(len(payline.path))) if payline.direction != 'lr' else range(len(payline.path))
 
             length = 0
             calc_symbol_id = window[first_index][payline.path[0] - 1]
-            for reel_id in range(len(payline.path)):
+
+            for reel_id in path:
                 if calc_symbol_id == window[reel_id][payline.path[reel_id] - 1]:
-                    length = length + increment
+                    length = length + 1
                 else:
                     break
             coeff = self.get_coeff_for_sym_len(game.rule, calc_symbol_id, length)
